@@ -1,0 +1,7 @@
+syntax: glob
+*.pyc
+*.db
+*.sql
+**.idea**
+**fabfile_settings.py
+**local_settings.py

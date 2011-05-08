@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block extendtitle %}{{ node.title }} | {{ block.super }}{% endblock %}
+
+{% block content %}
+
+<div class="headline grid_12 alpha">
+    <h2 class="grid_8 alpha">{{ node.title }}</h2>
+    <div class="timestamp grid_4 omega">{{ node.created|date:"j F Y" }}</div>
+</div>
+<div class="clear"></div>
+
+<div id="node-297" class="node node-blog">
+    <div class="content">
+        {{ node.body|safe }}
+    </div>
+    <div class="clear"></div>
+    <div class="meta">
+    Tags: <ul class="links inline">
+        {% for tag in node.get_tags %}
+            <li class="{% if forloop.first %}first{% endif %} {% if forloop.last %}last{% endif %}">
+                <a href="/taxonomy/term/{{ tag.id }}" rel="tag">{{ tag.name }}</a>{% if not forloop.last %},{% endif %}
+            </li>
+        {% endfor %}
+    </ul>&nbsp;</div>
+    <div class="clear"></div>
+</div> <!-- node -->
+{% if node.show_comment %}
+<div id="block-disqus-disqus_comments" class="block block-disqus block-content">
+    <div id="disqus_thread"></div>
+    <noscript>
+        <div class="disqus-noscript">
+            <a href="http://tutamc.disqus.com/?url={{ node.get_absolute_url_with_domain|urlencode }}">
+                View the discussion thread.</a>
+        </div>
+    </noscript>
+</div>
+<script type="text/javascript">
+    var disqus_url = "{{ node.get_absolute_url_with_domain }}";
+    var disqus_title = "{{ node.title }}";
+    var disqus_identifier = "{{ node.get_disqus_identifier }}";
+</script>
+{% endif %}
+
+<div class="clear"></div>
+
+{% endblock %}
+
+{% block end_body %}
+<script type="text/javascript">
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://tutamc.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+{% endblock %}

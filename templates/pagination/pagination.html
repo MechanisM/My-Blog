@@ -1,0 +1,26 @@
+{% if is_paginated %}
+{% load i18n %}
+<div class="item-list">
+    <ul class="pager">
+        {% if page_obj.has_previous %}
+            <li class="pager-item"><a href="?page={{ page_obj.previous_page_number }}{{ getvars }}{{ hashtag }}" class="active prev">&lsaquo;&lsaquo; попередні</a></li>
+        {% endif %}
+        {% for page in pages %}
+            {% if page %}
+                {% ifequal page page_obj.number %}
+                    <li class="pager-current">{{ page }}</li>
+                {% else %}
+                    <li class="pager-item"><a href="?page={{ page }}{{ getvars }}{{ hashtag }}" class="active">{{ page }}</a></li>
+                {% endifequal %}
+            {% else %}
+                <li class="pager-ellipsis">…</li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <li class="pager-next"><a href="?page={{ page_obj.next_page_number }}{{ getvars }}{{ hashtag }}" class="active">наступні &rsaquo;&rsaquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
+<div class="clear"></div>
+
+{% endif %}

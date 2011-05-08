@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load pagination_tags %}
+
+{% block content %}
+    {% autopaginate nodes 10 %}
+    {% for node in nodes %}
+        <div class="node node-blog teaser">
+            <div class="headline grid_12 alpha">
+                <h2 class="grid_8 alpha"><a href="{{ node.get_absolute_url }}">{{ node.title }}</a></h2>
+                <div class="timestamp grid_4 omega">{{ node.created|date:"j F Y" }}</div>
+            </div>
+            <div class="content">
+                {{ node.get_description|safe }}
+                <div class="clear"></div>
+                {% if node.is_next %}
+                    <span class="readmore"><a href="{{ node.get_absolute_url }}">Далі...</a></span>
+                {% endif %}
+            </div>
+            <div class="clear"></div>
+        
+            <div class="meta">
+                {% if node.show_comment %}
+                    <span class="comments_count"><a href="{{ node.get_absolute_disqus_url }}">Коментарі</a></span>
+                {% endif %}
+                Tags:
+                <ul class="links inline">
+                    {% for tag in node.get_tags %}
+                    <li class="{% if forloop.first %}first{% endif %} {% if forloop.last %}last{% endif %}">
+                        <a href="/taxonomy/term/{{ tag.id }}" rel="tag">{{ tag.name }}</a>{% if not forloop.last %},{% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>&nbsp;
+            </div>
+
+            <div class="clear"></div>
+        </div>
+    {% endfor %}
+
+    {% paginate %}
+{% endblock %}
+
+{% block end_body %}
+    <script type="text/javascript">
+    var disqus_shortname = 'tutamc';
+    (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.src = 'http://disqus.com/forums/tutamc/count.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+{% endblock %}

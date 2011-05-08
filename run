@@ -1,0 +1,3 @@
+#!/usr/bin/env	bash
+
+exec envuidgid www-data /usr/www/blog/manage.py run_gunicorn -b 127.0.0.1:8778

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block extendtitle %}{% endblock %} TutaMC | presidentua</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="TutaMC RSS" href="http://tutamc.com/rss.xml" />
+    <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon" />
+    <link type="text/css" rel="stylesheet" media="all" href="/media/css/main.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('a[href^="http"]').each(function(){
+                if ($(this).attr("href").indexOf("http://tutamc.com")){
+                    $(this).attr("target","_blank");
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-7097802-1']);
+        _gaq.push(['_trackPageview']);
+        _gaq.push(['_trackPageLoadTime']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+
+<body class="front not-logged-in page-node one-sidebar sidebar-left">
+    <div id="page" class="container_16">
+        <div id="header">
+            <div id="headerTitle" class="grid_12">
+                <a href="/" title="TutaMC"><img src="/media/img/logo.png" alt="" id="logo" /></a>
+                <div id="title-wrapper">
+                    <h1><a href="/" title="TutaMC">TutaMC</a></h1>
+                    <div id="site-slogan">be hungry</div>
+                </div>
+            </div>
+            <div id="search-top" class="grid_4"></div>
+
+            <div class="clear"></div>
+
+            <div id="headerLinks" class="grid_16">
+                <ul id="topLinks" class="grid_16">
+                    {% include "main_menu.html" %}
+                </ul>
+            </div>
+
+            <div class="clear"></div>
+
+        </div>
+        <div class="rule-top">&nbsp;</div>
+
+        <div id="center" class="grid_12">{% block content %}{% endblock %}</div>
+
+        <div id="sidebar-right" class="sidebar grid_4">
+            <div id="block-block-12" class="block block-block block-left">
+                <h3>RSS</h3>
+                <center>
+                    <a href="http://tutamc.com/rss.xml">
+                        <img width=128 height=128 border=0 alt='RSS' src="/media/img/rss.png" />
+                    </a>
+                    <br />
+                    <p>
+                        <img src="http://feeds2.feedburner.com/~fc/tutamccom?bg=000000&amp;fg=FFFFFF&amp;anim=0" height="26" width="88" style="border:0" alt="" />
+                    </p>
+                </center>
+            </div>
+
+            <div id="block-tagadelic-1" class="block block-tagadelic block-left">
+                <h3>Теги</h3>
+                {% include "tag_cloud.html" %}
+            </div>
+
+            <div id="block-block-21" class="block block-block block-left">
+                <h3>Мої і моїх друзів сайти</h3>
+                <p>
+                <a href="http://usd.tutamc.com/">Money Manager</a><br />
+                <a href="http://alarm.org.ua/">Будильник</a><br />
+                <a href="http://ip.tutamc.com/">Мій IP</a><br />
+                <a href="http://d0wnl0ad.org.ua/">Файлообмінник</a><br />
+                <a href="http://nod.tutamc.com/">Ключики від NOD</a><br />
+                <a href="http://pricklylady.com/">Prickly Lady</a><br />
+                <a href="http://uasc.org.ua/">Колективний блог Хакерів</a><br />
+                <a href="http://gread.org.ua/">On-line читалка для книг</a>
+                </p>
+            </div>
+        </div>
+        <div class="clear">&nbsp;</div>
+        <div id="bottomPad">&nbsp;</div>
+        <div id="bottom-hr" class="rule">&nbsp;</div>
+        <div id="bottom" class="grid_16">
+            <div id="bottom-bar">
+                <div id="block-block-11" class="block block-block block-bottom bottom-row-start">
+                    <b>Роман Хоменко aka PresidentUA</b><br />
+                    mail/jabber: spirt40@gmail.com<br />
+                </div>
+            </div>
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+
+{% block end_body %}{% endblock %}
+</body>
+</html>

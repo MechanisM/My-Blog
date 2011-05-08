@@ -1,0 +1,9 @@
+{% load cache %}
+{% load tagging_tags %}
+
+{% cache 100000 tag_cloud %}
+    {% tag_cloud_for_model node.Entry as tags with steps=3 min_count=8 distribution=log %}
+    {% for tag in tags %}
+        <a href="/taxonomy/term/{{tag.id}}" class="tagadelic level{{tag.font_size}}">{{tag.name}}</a>
+    {% endfor %}
+{% endcache %}
